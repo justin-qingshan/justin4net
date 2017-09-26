@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="io\DirectoryUtil.cs" />
+    <Compile Include="io\FileUtil.cs" />
+    <Compile Include="io\PathDelNum.cs" />
+    <Compile Include="io\PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\DataCompare.cs" />
     <Compile Include="util\DataConvert.cs" />
