@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using just4net.io;
+using System.Collections.Generic;
+using just4net.collection;
 
 namespace demo
 {
@@ -8,7 +10,7 @@ namespace demo
     {
         static void Main(string[] args)
         {
-            TestMD5();
+            TestCollection();
             Console.ReadKey();
         }
 
@@ -37,6 +39,20 @@ namespace demo
             Console.WriteLine(path);
             Console.WriteLine("MD5: {0}", md5);
             Console.WriteLine("SHA1: {0}", sha1);
+        }
+
+
+        static void TestCollection()
+        {
+            Dictionary<int, string> dic = new Dictionary<int, string>();
+            dic.Add(1, "first");
+            dic.Add(2, "second");
+            dic.Add(3, "third");
+
+            Console.WriteLine("Keys: ");
+            dic.TraveralKeys(key => { Console.WriteLine(key); });
+            Console.WriteLine("Values: ");
+            dic.TraveralValues(value => { Console.WriteLine(value); });
         }
 
     }
