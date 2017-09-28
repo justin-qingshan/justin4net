@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="db\IDB.cs" />
+    <Compile Include="db\SqlDAUtil.cs" />
+    <Compile Include="db\SqlDB.cs" />
     <Compile Include="io\DirectoryUtil.cs" />
     <Compile Include="io\FileUtil.cs" />
     <Compile Include="io\PathDelNum.cs" />
