@@ -11,7 +11,7 @@ namespace just4net.db
         private SqlConnection conn;
         private SqlTransaction tran;
 
-        private bool disposed = true;
+        private bool disposed = false;
 
 
         public SqlDB(string connStr)
@@ -22,7 +22,7 @@ namespace just4net.db
 
         public void Open(bool transaction = false)
         {
-            if (!disposed)
+            if (disposed)
                 return;
 
             if (conn == null)

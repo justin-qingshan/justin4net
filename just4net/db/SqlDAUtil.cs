@@ -31,7 +31,7 @@ namespace just4net.db
         /// <param name="db">IDB.</param>
         /// <param name="cmdStr">sql procedure's name to call.</param>
         /// <returns></returns>
-        public SqlDAUtil FromProcedure(IDB db, string cmdStr)
+        public static SqlDAUtil FromProcedure(IDB db, string cmdStr)
         {
             return new SqlDAUtil(db, CommandType.StoredProcedure, cmdStr);
         }
