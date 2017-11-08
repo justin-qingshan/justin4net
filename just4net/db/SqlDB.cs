@@ -86,7 +86,7 @@ namespace just4net.db
             SqlCommand cmd = GenerateCommand(cmdStr, cmdType, parameters, returnParam);
 
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = null;
+            DataTable dt = new DataTable();
 
             try
             {
