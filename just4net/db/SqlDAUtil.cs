@@ -13,6 +13,7 @@ namespace just4net.db
 
         private List<IDataParameter> parameters;
 
+
         /// <summary>
         /// Create a Command from sql text.
         /// </summary>
@@ -101,6 +102,7 @@ namespace just4net.db
             return db.QueryCommand(cmdStr, cmdType, parameters);
         }
 
+
         /// <summary>
         /// Use this command to run sql text and return the rows count affected.
         /// </summary>
@@ -148,6 +150,7 @@ namespace just4net.db
         {
             return SqlDAUtil.FromProcedure(db, procedure);
         }
+
 
         public static SqlDAUtil FromText(this SqlDB db, string cmdStr)
         {

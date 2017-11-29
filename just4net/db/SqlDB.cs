@@ -72,6 +72,7 @@ namespace just4net.db
             tran.Commit();
         }
 
+
         public void RollbackTransaction()
         {
             if (conn == null || conn.State != ConnectionState.Open || tran == null)
@@ -118,9 +119,7 @@ namespace just4net.db
             return result;
         }
 
-
-
-
+        
         public SqlCommand GenerateCommand(string cmdStr, CommandType cmdType,
             ICollection<IDataParameter> parameters, IDataParameter returnValue)
         {
@@ -203,6 +202,5 @@ namespace just4net.db
             }
             return new ApplicationException(msg, ex);
         }
-
     }
 }
