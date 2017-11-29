@@ -7,7 +7,7 @@ namespace just4net.db
 {
     public class SqlDAUtil
     {
-        private IDB db;
+        private SqlDB db;
         private CommandType cmdType;
         private string cmdStr;
 
@@ -19,7 +19,7 @@ namespace just4net.db
         /// <param name="db">IDB.</param>
         /// <param name="cmdStr">command string.</param>
         /// <returns></returns>
-        public static SqlDAUtil FromText(IDB db, string cmdStr)
+        public static SqlDAUtil FromText(SqlDB db, string cmdStr)
         {
             return new SqlDAUtil(db, CommandType.Text, cmdStr);
         }
@@ -31,13 +31,13 @@ namespace just4net.db
         /// <param name="db">IDB.</param>
         /// <param name="cmdStr">sql procedure's name to call.</param>
         /// <returns></returns>
-        public SqlDAUtil FromProcedure(IDB db, string cmdStr)
+        public static SqlDAUtil FromProcedure(SqlDB db, string cmdStr)
         {
             return new SqlDAUtil(db, CommandType.StoredProcedure, cmdStr);
         }
 
 
-        private SqlDAUtil(IDB db, CommandType cmdType, string cmdStr)
+        private SqlDAUtil(SqlDB db, CommandType cmdType, string cmdStr)
         {
             this.db = db;
             this.cmdType = cmdType;
@@ -119,6 +119,7 @@ namespace just4net.db
         public DataTable Query(out int returnValue)
         {
             IDataParameter returnParam = new SqlParameter("@RETURN", SqlDbType.Int);
+            returnParam.Direction = ParameterDirection.ReturnValue;
             DataTable dt = db.QueryCommand(cmdStr, cmdType, parameters, returnParam);
             returnValue = returnParam.Value == null ? -1 : Convert.ToInt32(returnParam.Value);
             return dt;
@@ -133,15 +134,24 @@ namespace just4net.db
         public int Run(out int returnValue)
         {
             IDataParameter returnParam = new SqlParameter("@RETURN", SqlDbType.Int);
+            returnParam.Direction = ParameterDirection.ReturnValue;
             int count = db.RunCommand(cmdStr, cmdType, parameters, returnParam);
             returnValue = returnParam.Value == null ? -1 : Convert.ToInt32(returnParam.Value);
             return count;
         }
+        
+    }
 
+    public static class SqlDBUtil
+    {
+        public static SqlDAUtil FromProcedure(this SqlDB db, string procedure)
+        {
+            return SqlDAUtil.FromProcedure(db, procedure);
+        }
 
-
-       
-
-
+        public static SqlDAUtil FromText(this SqlDB db, string cmdStr)
+        {
+            return SqlDAUtil.FromText(db, cmdStr);
+        }
     }
 }
