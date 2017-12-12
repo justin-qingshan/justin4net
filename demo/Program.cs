@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using just4net.collection;
 using just4net.timer;
 using System.Threading;
+using just4net.util;
 
 namespace demo
 {
@@ -12,10 +13,26 @@ namespace demo
     {
         static void Main(string[] args)
         {
-            TestTimer();
+            TestConfigUtil();
             Console.ReadKey();
         }
 
+
+        static void TestConfigUtil()
+        {
+            string value1 = ConfigUtil.Settings["key1"];
+            Console.WriteLine($"key1 = {value1}");
+
+            Console.Write($"Please input value: ");
+            string str = Console.ReadLine();
+            ConfigUtil util = new ConfigUtil(ConfigType.EXE);
+            util.AddAppSetting("key1", str);
+            util.Save();
+            value1 = util.AppSettings["key1"];
+            Console.WriteLine($"key1 = {value1}");
+            value1 = ConfigUtil.Settings["key1"];
+            Console.WriteLine($"key1 = {value1}");
+        }
 
 
         static void TestTimer()

@@ -24,6 +24,10 @@ Using Newtonsoft.Json.
 
 Using System.Timers.Timer and cache timer tasks' running time.
 
+### collection
+
+Tools for collections.
+
 
 ## demo
 The demo of tools using.
