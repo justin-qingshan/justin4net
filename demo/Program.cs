@@ -3,6 +3,9 @@ using System.IO;
 using just4net.io;
 using System.Collections.Generic;
 using just4net.collection;
+using just4net.timer;
+using System.Threading;
+using just4net.util;
 
 namespace demo
 {
@@ -10,8 +13,35 @@ namespace demo
     {
         static void Main(string[] args)
         {
-            TestCollection();
+            TestConfigUtil();
             Console.ReadKey();
+        }
+
+
+        static void TestConfigUtil()
+        {
+            string value1 = ConfigUtil.Settings["key1"];
+            Console.WriteLine($"key1 = {value1}");
+
+            Console.Write($"Please input value: ");
+            string str = Console.ReadLine();
+            ConfigUtil util = new ConfigUtil(ConfigType.EXE);
+            util.AddAppSetting("key1", str);
+            util.Save();
+            value1 = util.AppSettings["key1"];
+            Console.WriteLine($"key1 = {value1}");
+            value1 = ConfigUtil.Settings["key1"];
+            Console.WriteLine($"key1 = {value1}");
+        }
+
+
+        static void TestTimer()
+        {
+            TaskTimer timer = TaskTimer.GetInstance();
+            Console.WriteLine("START");
+            Thread.Sleep(5000);
+            Console.WriteLine("ADD TIMER");
+            timer.Add(new PrintTask());
         }
 
 
@@ -55,5 +85,36 @@ namespace demo
             dic.TraveralValues(value => { Console.WriteLine(value); });
         }
 
+    }
+
+    public class PrintTask : ITask
+    {
+        public override string Name
+        {
+            get
+            {
+                return "PRINT";
+            }
+        }
+
+        public override DateTime GenerateLastTime()
+        {
+            return default(DateTime);
+        }
+
+        public override DateTime GenerateNextTime(DateTime lastTime)
+        {
+            DateTime now = DateTime.Now;
+            DateTime time = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 10);
+            if (time < now)
+                return time.AddMinutes(1);
+            else
+                return time;
+        }
+
+        public override void Run(DateTime now)
+        {
+            Console.WriteLine("PRINT: " + now);
+        }
     }
 }
