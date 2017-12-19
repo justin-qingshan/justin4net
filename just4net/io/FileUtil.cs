@@ -6,6 +6,11 @@ namespace just4net.io
 {
     public class FileUtil
     {
+        /// <summary>
+        /// Copy files in directory.
+        /// </summary>
+        /// <param name="sourceDir"></param>
+        /// <param name="destDir"></param>
         public static void CopyInDirectory(string sourceDir, string destDir)
         {
             string[] fileName = Directory.GetFiles(sourceDir);
@@ -18,6 +23,11 @@ namespace just4net.io
         }
 
 
+        /// <summary>
+        /// Move file.
+        /// </summary>
+        /// <param name="sourceFile"></param>
+        /// <param name="dstFile"></param>
         public static void Move(string sourceFile, string dstFile)
         {
             if (!File.Exists(sourceFile))
@@ -28,7 +38,6 @@ namespace just4net.io
 
             File.Move(sourceFile, dstFile);
         }
-
 
 
         /// <summary>

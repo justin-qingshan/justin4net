@@ -23,6 +23,7 @@ namespace just4net.collection
             return values;
         }
 
+
         /// <summary>
         /// Get keys of dictionary.
         /// </summary>
@@ -89,6 +90,7 @@ namespace just4net.collection
                 action(key);
         }
 
+
         /// <summary>
         /// Traversal dictionary's keys with index.
         /// </summary>
@@ -132,6 +134,56 @@ namespace just4net.collection
                 action(value, i++);
         }
 
+
+        /// <summary>
+        /// Group a collection by specific property.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="self"></param>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        public static List<T>[] Group<T, TKey>(this ICollection<T> self, Func<T, TKey> func)
+        {
+            Dictionary<TKey, List<T>> dic = self.GroupDic(func);
+            List<T>[] cols = new List<T>[dic.Keys.Count];
+            int i = 0;
+            foreach(List<T> col in dic.Values)
+            {
+                cols[i++] = col;
+            }
+
+            return cols;
+        }
+
+
+        /// <summary>
+        /// Group a collection into dictionary.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="self"></param>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        public static Dictionary<TKey, List<T>> GroupDic<T, TKey>(this ICollection<T> self, Func<T, TKey> func)
+        {
+            Dictionary<TKey, List<T>> dic = new Dictionary<TKey, List<T>>();
+            foreach (T t in self)
+            {
+                TKey key = func(t);
+                List<T> col;
+                if (dic.TryGetValue(key, out col))
+                    col.Add(t);
+                else
+                {
+                    col = new List<T>();
+                    col.Add(t);
+                    dic.Add(key, col);
+                }
+            }
+
+            return dic;
+        }
 
     }
 }

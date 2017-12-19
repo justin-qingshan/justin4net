@@ -39,7 +39,6 @@ namespace just4net.serialize
                 return false;
 
             writer.Write(jsonStr);
-
             writer.Flush();
             writer.Close();
 

@@ -16,6 +16,10 @@ namespace just4net.timer
         private Timer timer;
 
         
+        /// <summary>
+        /// Get the singleton instance.
+        /// </summary>
+        /// <returns></returns>
         public static TaskTimer GetInstance()
         {
             if (instance == null)
@@ -31,6 +35,10 @@ namespace just4net.timer
         }
 
 
+        /// <summary>
+        /// Add a task to timer.
+        /// </summary>
+        /// <param name="task"></param>
         public void Add(ITask task)
         {
             lock (locker)
@@ -42,6 +50,10 @@ namespace just4net.timer
         }
 
 
+        /// <summary>
+        /// Remove a task from timer.
+        /// </summary>
+        /// <param name="name"></param>
         public void Remove(string name)
         {
             lock (locker)
@@ -51,6 +63,11 @@ namespace just4net.timer
         }
 
 
+        /// <summary>
+        /// Get task by its <see cref="ITask.Name"/>.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public ITask Get(string name)
         {
             ITask task = null;
@@ -62,12 +79,22 @@ namespace just4net.timer
         }
 
 
+        /// <summary>
+        /// Get task by its <see cref="ITask.Name"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public ITask this[string name]
         {
             get { return Get(name); }
         }
 
 
+        /// <summary>
+        /// Setter and getter of whether timer will cache task execute time.
+        /// <para></para>
+        /// When need to set to true, It's necessary to set <see cref="TaskTimeCache.CacheFolder"/> firstly.
+        /// </summary>
         public bool WillCacheTime
         {
             get { return willCacheTime; }

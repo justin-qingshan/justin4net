@@ -162,6 +162,7 @@ namespace just4net.db
                     param.Value = DBNull.Value;
                 cmd.Parameters.Add(param);
             }
+
             return cmd;
         }
 

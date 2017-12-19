@@ -16,7 +16,11 @@ namespace just4net.util
         private AppSettingsClass _appSettingsClass;
         private ConnectionStringsClass _connStringsClass;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configType"><see cref="ConfigType"/></param>
+        /// <param name="path">When config type is <see cref="ConfigType.EXE"/>, it is exe path.</param>
         public ConfigUtil(ConfigType configType = ConfigType.WEB, string path = null)
         {
             if (configType == ConfigType.WEB)
@@ -124,9 +128,7 @@ namespace just4net.util
             ConfigurationManager.RefreshSection("connectionStrings");
             //ConfigurationManager.RefreshSection("applicationSettings");
         }
-
-
-
+        
     }
 
     public class AppSettingsClass
