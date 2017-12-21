@@ -36,6 +36,12 @@ namespace just4net.thread
 
 
         /// <summary>
+        /// Called while the main content runs to end.
+        /// </summary>
+        public abstract void PostRun();
+
+
+        /// <summary>
         /// Called when the task is canceled.
         /// </summary>
         public abstract void Cancel();

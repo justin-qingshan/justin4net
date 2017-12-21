@@ -4,23 +4,32 @@ using System.Threading.Tasks;
 
 namespace just4net.thread
 {
+    /// <summary>
+    /// A pool to create limit threads to run tasks.
+    /// </summary>
     public class TaskPool
     {
         private static TaskPool instance;
         private static ReaderWriterLockSlim locker = new ReaderWriterLockSlim();
         private AutoResetEvent run = new AutoResetEvent(true);
 
-        private TaskPoolState currentState; //Indicate the current state of pool.
-        private TaskPoolState toState; //Indicate whether pool will accept new task to run in next step.
+        private TaskPoolState currentState; // Indicate the current state of pool.
+        private TaskPoolState toState; // Indicate whether pool will accept new task to run in next step.
 
-        private int maxThreadCount;
+        private int maxThreadCount; // Indicate the max count of running threads at the same time.
 
-        private TaskFetchThread taskFetch;
+        private TaskFetchThread taskFetch; // the task fetch thread which can fetch task in one thread.
         private Thread mainThread;
 
         private Dictionary<string, IPoolTask> running = new Dictionary<string, IPoolTask>();
 
 
+        /// <summary>
+        /// Get the singleton instance of <see cref="TaskPool"/>
+        /// </summary>
+        /// <param name="taskGenerator">A task generator which can generate new task to run.</param>
+        /// <param name="maxThreadCount">The maxium count of threads which will run in the same time.</param>
+        /// <returns></returns>
         public static TaskPool GetInstance(IPoolTaskGenerator<IPoolTask> taskGenerator, int maxThreadCount)
         {
             if (instance == null)
@@ -36,6 +45,11 @@ namespace just4net.thread
         }
 
 
+        /// <summary>
+        /// Constructor of TaskPool.
+        /// </summary>
+        /// <param name="taskGenerator"></param>
+        /// <param name="maxThreadCount"></param>
         private TaskPool(IPoolTaskGenerator<IPoolTask> taskGenerator, int maxThreadCount)
         {
             toState = TaskPoolState.RUN;
@@ -52,7 +66,11 @@ namespace just4net.thread
         }
 
 
-
+        /// <summary>
+        /// Pause task pool, let it not run new task.
+        /// </summary>
+        /// <param name="waitInterval">within which it will checkout whether it is paused.</param>
+        /// <returns></returns>
         public bool Pause(int waitInterval = 1000)
         {
             locker.EnterWriteLock();
@@ -74,6 +92,11 @@ namespace just4net.thread
         }
 
 
+        /// <summary>
+        /// Pause task pool.
+        /// </summary>
+        /// <param name="waitInterval">It will check whether it is paused every waitInterval miniseconds.</param>
+        /// <returns></returns>
         public Task<bool> PauseAysnc(int waitInterval = 1000)
         {
             return Task.Run(() =>
