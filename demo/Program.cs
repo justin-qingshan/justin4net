@@ -13,8 +13,7 @@ namespace demo
     {
         static void Main(string[] args)
         {
-            TestConfigUtil();
-            Console.ReadKey();
+            new TaskPoolTest().Run();
         }
 
 
