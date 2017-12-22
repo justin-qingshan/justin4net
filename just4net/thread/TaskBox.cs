@@ -22,7 +22,12 @@ namespace just4net.thread
         private TaskPoolState currentState; // current state of task box.
 
 
-
+        /// <summary>
+        /// Add a task to Task Box.
+        /// <para></para>
+        /// Need to call <see cref="Resume"/> to run this task immediately.
+        /// </summary>
+        /// <param name="task"></param>
         public void AddTask(IPoolTask task)
         {
             locker.EnterWriteLock();

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using just4net.thread;
+using System;
 using System.Threading.Tasks;
-using just4net.thread;
 
 namespace demo
 {
     class TaskBoxTest
     {
         static int i = 0;
+
         public void Run()
         {
             TaskBox box = TaskBox.GetInstance(5);
@@ -36,6 +34,7 @@ namespace demo
                 }
             }
 
+            return;
         }
     }
 }

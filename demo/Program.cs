@@ -15,7 +15,7 @@ namespace demo
         {
             //new TaskPoolTest().Run();
             new TaskBoxTest().Run();
-            
+            Environment.Exit(0);
         }
 
 
