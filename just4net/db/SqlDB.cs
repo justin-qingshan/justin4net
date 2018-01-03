@@ -7,6 +7,7 @@ namespace just4net.db
 {
     public sealed class SqlDB : IDB, IDisposable
     {
+        private static int CMD_TIMEOUT = 3;
         private string connStr;
         private SqlConnection conn;
         private SqlTransaction tran;
@@ -143,6 +144,7 @@ namespace just4net.db
             cmd.Connection = conn;
             cmd.CommandText = cmdStr;
             cmd.CommandType = cmdType;
+            cmd.CommandTimeout = CMD_TIMEOUT;
 
             if (tran != null)
                 cmd.Transaction = tran;
