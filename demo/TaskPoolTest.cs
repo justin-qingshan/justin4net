@@ -42,6 +42,8 @@ namespace demo
 
     public class MyTask : IPoolTask
     {
+        public static object obj = new object();
+
         public MyTask(string key) : base(key)
         {
         }
@@ -67,12 +69,31 @@ namespace demo
 
         public override void Run()
         {
-            for (int i = 0; i < 100; i++)
+
+            int top;
+            string str;
+            lock (obj)
+            {
+                Console.WriteLine();
+                top = Console.CursorTop;
+                str = $"RUN - {key}: ";
+                Console.SetCursorPosition(0, top);
+                Console.WriteLine(str);
+            }
+            
+            for (int i = 0; i < 110; i++)
             {
                 if (i % 10 == 0)
-                    Console.WriteLine($"RUN - {Thread.CurrentThread.ManagedThreadId}: {key} - {i}");
+                {
+                    lock (obj)
+                    {
+                        Console.SetCursorPosition(str.Length, top);
+                        Console.Write($"{i}%");
+                    }
+                }
                 Thread.Sleep(100);
             }
+            Console.WriteLine();
 
         }
     }

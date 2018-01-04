@@ -22,7 +22,7 @@ namespace just4net.db
         /// <summary>
         /// Begin transaction.
         /// </summary>
-        void BeginTransaction();
+        IDbTransaction BeginTransaction();
 
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace just4net.db
         /// <param name="returnParam"></param>
         /// <returns></returns>
         DataTable QueryCommand(string cmdStr, CommandType cmdType,
-            ICollection<IDataParameter> parameters = null, IDataParameter returnParam = null);
+            ICollection<IDataParameter> parameters, IDataParameter returnParam, int timeout);
 
 
         /// <summary>
@@ -58,6 +58,6 @@ namespace just4net.db
         /// <param name="returnParam"></param>
         /// <returns></returns>
         int RunCommand(string cmdStr, CommandType cmdType,
-            ICollection<IDataParameter> parameters = null, IDataParameter returnParam = null);
+            ICollection<IDataParameter> parameters, IDataParameter returnParam, int timeout);
     }
 }
