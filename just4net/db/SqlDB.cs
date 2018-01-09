@@ -52,7 +52,7 @@ namespace just4net.db
             if (conn == null)
                 return;
 
-            if (conn.State != ConnectionState.Open)
+            if (conn.State == ConnectionState.Open)
                 conn.Close();
         }
 
