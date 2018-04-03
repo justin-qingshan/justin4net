@@ -73,6 +73,7 @@
     <Compile Include="util\ConfigUtil.cs" />
     <Compile Include="util\DataCompare.cs" />
     <Compile Include="util\DataConvert.cs" />
+    <Compile Include="util\EnumUtil.cs" />
     <Compile Include="util\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>

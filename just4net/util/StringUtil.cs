@@ -1,4 +1,8 @@
-﻿namespace just4net.util
+﻿using System.Security.Cryptography;
+using System.Text;
+using System;
+
+namespace just4net.util
 {
     public static class StringUtil
     {
@@ -49,8 +53,35 @@
         }
 
 
+        public static string ToMD5(this string text)
+        {
+            byte[] buffer = Encoding.Default.GetBytes(text);
+            using(MD5 md5 = MD5.Create())
+            {
+                buffer = md5.ComputeHash(buffer);
+                StringBuilder md5Builder = new StringBuilder();
+                foreach(byte @byte in buffer)
+                {
+                    md5Builder.Append(@byte.ToString("x2"));
+                }
+                return md5Builder.ToString();
+            }
+
+        }
 
 
+        /// <summary>
+        /// Euqals when ignore case.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static bool EqualsTo(this string source, string target)
+        {
+            if (string.IsNullOrWhiteSpace(source) && string.IsNullOrWhiteSpace(target))
+                return true;
 
+            return string.Equals(source, target, StringComparison.CurrentCultureIgnoreCase);
+        }
     }
 }

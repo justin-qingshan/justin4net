@@ -303,5 +303,43 @@ namespace just4net.io
             text = Encoding.Default.GetString(b);
             return Encoding.Default;
         }
+
+
+        /// <summary>
+        /// Read content form file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string ReadFile(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentNullException(nameof(path));
+
+            if (!File.Exists(path))
+                return null;
+
+            return File.ReadAllText(path);
+        } 
+
+
+        /// <summary>
+        /// Append content to file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="content"></param>
+        /// <param name="append"></param>
+        public static void WriteFile(string path, string content , bool append = false)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentNullException(nameof(path));
+            if (File.Exists(path) && append)
+                File.Delete(path);
+
+            string dir = Path.GetDirectoryName(path);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            File.AppendAllText(path, content);
+        }
     }
 }
