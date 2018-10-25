@@ -13,7 +13,7 @@ namespace demo
     {
         static void Main(string[] args)
         {
-            TestConfigUtil();
+            new DocTest().Test();
             Console.ReadKey();
         }
 

@@ -42,13 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="doc.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="excel.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ppt.pptx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\just4net.doc\just4net.doc.csproj">
+      <Project>{ec764dae-7c01-44e3-973f-b3589b48828e}</Project>
+      <Name>just4net.doc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\just4net\just4net.csproj">
       <Project>{12aa1ca4-fb0f-4f38-ac0e-147c9e47c110}</Project>
       <Name>just4net</Name>
