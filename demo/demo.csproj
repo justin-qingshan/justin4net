@@ -45,6 +45,8 @@
     <Compile Include="DocTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskBoxTest.cs" />
+    <Compile Include="TaskPoolTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

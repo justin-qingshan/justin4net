@@ -63,12 +63,18 @@
     <Compile Include="io\PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="serialize\JsonUtil.cs" />
+    <Compile Include="thread\IPoolTask.cs" />
+    <Compile Include="thread\TaskBox.cs" />
+    <Compile Include="thread\TaskFetchThread.cs" />
+    <Compile Include="thread\TaskPool.cs" />
+    <Compile Include="thread\TaskPoolState.cs" />
     <Compile Include="timer\ITask.cs" />
     <Compile Include="timer\TaskTimeCache.cs" />
     <Compile Include="timer\TaskTimer.cs" />
     <Compile Include="util\ConfigUtil.cs" />
     <Compile Include="util\DataCompare.cs" />
     <Compile Include="util\DataConvert.cs" />
+    <Compile Include="util\EnumUtil.cs" />
     <Compile Include="util\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>

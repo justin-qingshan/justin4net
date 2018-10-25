@@ -28,6 +28,13 @@ Using System.Timers.Timer and cache timer tasks' running time.
 
 Tools for collections.
 
+### thread
+
+Tools for thread operation.
+
+`TaskPool` is used to create a pool to store threads to run tasks which should be fetched in somewhere else.
+
+`TaskBox` can store tasks and create limited threads to run it when necessary.
 
 ## demo
 The demo of tools using.

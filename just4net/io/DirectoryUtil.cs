@@ -32,6 +32,8 @@ namespace just4net.io
             }
         }
         
+
+        /// <summary>
         /// Judge the two paths is the same or not.
         /// </summary>
         /// <param name="path1">path 1.</param>

@@ -16,6 +16,10 @@ namespace just4net.timer
         private static string cacheFolder;
 
 
+        /// <summary>
+        /// Get the singleton instance.
+        /// </summary>
+        /// <returns></returns>
         public static TaskTimeCache GetInstance()
         {
             if (instance == null)
@@ -31,6 +35,12 @@ namespace just4net.timer
         }
 
 
+        /// <summary>
+        /// Update the time.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="lastTime"></param>
+        /// <param name="nextTime"></param>
         public void Update(string name, DateTime lastTime, DateTime nextTime)
         {
             lock (locker)
@@ -50,6 +60,11 @@ namespace just4net.timer
         }
 
 
+        /// <summary>
+        /// Get <see cref="TaskTime"/> By its name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public TaskTime this[string name]
         {
             get
@@ -61,6 +76,11 @@ namespace just4net.timer
         }
 
 
+        /// <summary>
+        /// Setter and getter of Cache folder.
+        /// <para></para>
+        /// Setter must be called firstly when using TaskTimeCache.
+        /// </summary>
         public static string CacheFolder
         {
             get { return cacheFolder; }

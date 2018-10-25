@@ -37,6 +37,7 @@ namespace just4net.io
             return pathdel;
         }
 
+
         public static PathDelNum DeleteFile(string filePath)
         {
             PathDelNum pathdel = new PathDelNum();
