@@ -76,12 +76,15 @@ namespace just4net.util
         /// <param name="source"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static bool EqualsTo(this string source, string target)
+        public static bool Eq(this string source, string target, bool ignoreCase = true)
         {
             if (string.IsNullOrWhiteSpace(source) && string.IsNullOrWhiteSpace(target))
                 return true;
 
-            return string.Equals(source, target, StringComparison.CurrentCultureIgnoreCase);
+            if (ignoreCase)
+                return string.Equals(source, target, StringComparison.CurrentCultureIgnoreCase);
+            else
+                return string.Equals(source, target, StringComparison.CurrentCulture);
         }
     }
 }

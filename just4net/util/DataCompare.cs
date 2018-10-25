@@ -10,7 +10,7 @@ namespace just4net.util
         /// <param name="self"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public static bool Equalss(this int self, params int[] values)
+        public static bool Eq(this int self, params int[] values)
         {
             foreach (int value in values)
             {
@@ -27,7 +27,7 @@ namespace just4net.util
         /// <param name="self"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public static bool Equalss(this string self, params string[] values)
+        public static bool Eq(this string self, params string[] values)
         {
             if (string.IsNullOrEmpty(self))
                 throw new ArgumentNullException("self cannot be null.");
@@ -40,25 +40,5 @@ namespace just4net.util
             return false;
         }
 
-
-        /// <summary>
-        /// Compare string value with other string values.
-        /// </summary>
-        /// <param name="self"></param>
-        /// <param name="comparison"></param>
-        /// <param name="values"></param>
-        /// <returns></returns>
-        public static bool Equalss(this string self, StringComparison comparison, params string[] values)
-        {
-            if (string.IsNullOrEmpty(self))
-                throw new ArgumentNullException("self cannot be null.");
-
-            foreach (string value in values)
-            {
-                if (self.Equals(value, comparison))
-                    return true;
-            }
-            return false;
-        }
     }
 }
