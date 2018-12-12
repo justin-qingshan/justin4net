@@ -6,6 +6,8 @@ using just4net.collection;
 using just4net.timer;
 using System.Threading;
 using just4net.util;
+using demo.aop;
+using demo.socketserver;
 
 namespace demo
 {
@@ -13,7 +15,9 @@ namespace demo
     {
         static void Main(string[] args)
         {
-            new DocTest().Test();
+            //new DocTest().Test();
+            //new AOPTest().Test();
+            new MySocketServerTest().Start();
             Console.ReadKey();
         }
 

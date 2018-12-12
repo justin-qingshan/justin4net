@@ -57,6 +57,13 @@ namespace just4net.db
         }
 
 
+        public void TryClose()
+        {
+            try { Close(); }
+            catch { }
+        }
+
+
         /// <summary>
         /// Begin the transaction.
         /// </summary>

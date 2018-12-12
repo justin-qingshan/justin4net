@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="collection\CollectionUtil.cs" />
+    <Compile Include="collection\DictionaryUtil.cs" />
+    <Compile Include="collection\ListUtil.cs" />
     <Compile Include="db\IDB.cs" />
     <Compile Include="db\SqlDAUtil.cs" />
     <Compile Include="db\SqlDB.cs" />
@@ -68,13 +70,17 @@
     <Compile Include="thread\TaskFetchThread.cs" />
     <Compile Include="thread\TaskPool.cs" />
     <Compile Include="thread\TaskPoolState.cs" />
+    <Compile Include="thread\ThreadPoolUtil.cs" />
     <Compile Include="timer\ITask.cs" />
     <Compile Include="timer\TaskTimeCache.cs" />
     <Compile Include="timer\TaskTimer.cs" />
+    <Compile Include="util\BinaryUtil.cs" />
+    <Compile Include="util\BufferManager.cs" />
     <Compile Include="util\ConfigUtil.cs" />
     <Compile Include="util\DataCompare.cs" />
     <Compile Include="util\DataConvert.cs" />
     <Compile Include="util\EnumUtil.cs" />
+    <Compile Include="util\ShortGuid.cs" />
     <Compile Include="util\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>

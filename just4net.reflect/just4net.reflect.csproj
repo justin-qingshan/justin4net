@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4879BF10-2044-49DE-A8D5-4DFEC0EBC6D4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{442B9165-AEDA-44C7-95F2-79211FC9074D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>demo</RootNamespace>
-    <AssemblyName>demo</AssemblyName>
+    <RootNamespace>just4net.reflect</RootNamespace>
+    <AssemblyName>just4net.reflect</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,49 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aop\AOPTest.cs" />
-    <Compile Include="aop\ExceptionRecordAttribute.cs" />
-    <Compile Include="aop\TrackAttribute.cs" />
-    <Compile Include="DocTest.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="aop\AbstractBoundaryAspectAttribute.cs" />
+    <Compile Include="aop\AbstractExceptionAspectAttribute.cs" />
+    <Compile Include="aop\AOPContextAttribute.cs" />
+    <Compile Include="aop\AOPHandler.cs" />
+    <Compile Include="aop\ISession.cs" />
+    <Compile Include="aop\ISuccess.cs" />
+    <Compile Include="aop\IEntry.cs" />
+    <Compile Include="aop\IException.cs" />
+    <Compile Include="aop\IExit.cs" />
+    <Compile Include="AssemblyUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="socketserver\MyAppServer.cs" />
-    <Compile Include="socketserver\MyRequest.cs" />
-    <Compile Include="socketserver\MyRequestFilter.cs" />
-    <Compile Include="socketserver\MySession.cs" />
-    <Compile Include="socketserver\MySocketServerTest.cs" />
-    <Compile Include="TaskBoxTest.cs" />
-    <Compile Include="TaskPoolTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="doc.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="excel.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ppt.pptx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\just4net.doc\just4net.doc.csproj">
-      <Project>{ec764dae-7c01-44e3-973f-b3589b48828e}</Project>
-      <Name>just4net.doc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\just4net.reflect\just4net.reflect.csproj">
-      <Project>{442b9165-aeda-44c7-95f2-79211fc9074d}</Project>
-      <Name>just4net.reflect</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\just4net.socket\just4net.socket.csproj">
-      <Project>{d8f78745-3b12-4bc3-b43f-1858025ed9e8}</Project>
-      <Name>just4net.socket</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\just4net\just4net.csproj">
-      <Project>{12aa1ca4-fb0f-4f38-ac0e-147c9e47c110}</Project>
-      <Name>just4net</Name>
-    </ProjectReference>
+    <Compile Include="ReflectUtil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

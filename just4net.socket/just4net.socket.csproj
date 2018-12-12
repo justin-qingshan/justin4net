@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8F78745-3B12-4BC3-B43F-1858025ED9E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>just4net.socket</RootNamespace>
+    <AssemblyName>just4net.socket</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="basic\AppSessionBase.cs" />
+    <Compile Include="basic\Async.cs" />
+    <Compile Include="basic\CloseReason.cs" />
+    <Compile Include="basic\IAppServer.cs" />
+    <Compile Include="basic\IAppSession.cs" />
+    <Compile Include="basic\IConnectionFilter.cs" />
+    <Compile Include="basic\IListenerConfig.cs" />
+    <Compile Include="basic\IRootConfig.cs" />
+    <Compile Include="basic\ISocketServer.cs" />
+    <Compile Include="basic\IServerConfig.cs" />
+    <Compile Include="basic\ISocketListener.cs" />
+    <Compile Include="basic\ISocketServerFactory.cs" />
+    <Compile Include="basic\ListenerConfig.cs" />
+    <Compile Include="basic\ListenerInfo.cs" />
+    <Compile Include="basic\LogExtension.cs" />
+    <Compile Include="basic\ServerConfig.cs" />
+    <Compile Include="basic\ServerState.cs" />
+    <Compile Include="command\ICommand.cs" />
+    <Compile Include="common\ArraySegmentEx.cs" />
+    <Compile Include="common\ArraySegmentList.cs" />
+    <Compile Include="common\BufferManagerExtensin.cs" />
+    <Compile Include="common\SearchMarkState.cs" />
+    <Compile Include="engine\AsyncSocketSession.cs" />
+    <Compile Include="engine\IAsyncSocketSession.cs" />
+    <Compile Include="basic\ILog.cs" />
+    <Compile Include="basic\ILoggerProvider.cs" />
+    <Compile Include="basic\ISessionBase.cs" />
+    <Compile Include="basic\ISocketSession.cs" />
+    <Compile Include="basic\SocketState.cs" />
+    <Compile Include="common\SendingQueue.cs" />
+    <Compile Include="common\SmartPool.cs" />
+    <Compile Include="common\SmartPoolSource.cs" />
+    <Compile Include="common\SocketExtension.cs" />
+    <Compile Include="engine\SocketAsyncEventArgsProxy.cs" />
+    <Compile Include="basic\AppServerBase.cs" />
+    <Compile Include="engine\SocketServerFactory.cs" />
+    <Compile Include="protocol\IReceiveFilterFactory.cs" />
+    <Compile Include="protocol\IRequestHandler.cs" />
+    <Compile Include="server\AsyncSocketServer.cs" />
+    <Compile Include="server\SocketListenerBase.cs" />
+    <Compile Include="engine\SocketServerBase.cs" />
+    <Compile Include="engine\SocketSessionBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="protocol\FixedHeaderReceiveFilter.cs" />
+    <Compile Include="protocol\FixedSizeReceiveFilter.cs" />
+    <Compile Include="protocol\IReceiveFilter.cs" />
+    <Compile Include="protocol\IRequestInfo.cs" />
+    <Compile Include="server\TcpAsyncSocketListener.cs" />
+    <Compile Include="server\TcpSocketServerBase.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\just4net\just4net.csproj">
+      <Project>{12AA1CA4-FB0F-4F38-AC0E-147C9E47C110}</Project>
+      <Name>just4net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="engine\SocketSessionBase.Log.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
