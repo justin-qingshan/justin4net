@@ -10,9 +10,57 @@ namespace demo.socketserver
 
         public MyRequestHeader Header { get; set; }
 
+
         public string Key
         {
             get { return ""; }
+        }
+
+        public byte[] Bytes
+        {
+            get
+            {
+                byte[] bytes = new byte[MyRequestHeader.LENGTH + Header.Length];
+                Array.Copy(BitConverter.GetBytes(Header.Length), 0, bytes, 0, 4);
+                Array.Copy(BitConverter.GetBytes(Header.MainType), 0, bytes, 4, 2);
+                Array.Copy(BitConverter.GetBytes(Header.SubType), 0, bytes, 6, 2);
+                Array.Copy(BitConverter.GetBytes(Header.Version), 0, bytes, 8, 4);
+                Array.Copy(BitConverter.GetBytes(Header.Flag), 0, bytes, 12, 4);
+                Array.Copy(BitConverter.GetBytes(Header.Id), 0, bytes, 16, 4);
+                Array.Copy(BitConverter.GetBytes(Header.Order), 0, bytes, 20, 4);
+                Array.Copy(Header.Remain, 0, bytes, 24, 12);
+                Array.Copy(Body.Content, 0, bytes, 36, Header.Length);
+                return bytes;
+            }
+        }
+
+        public static MyRequest GenerateMsgs(string str, ushort mainType, ushort subType, uint flag)
+        {
+            MyRequestHeader header = new MyRequestHeader();
+            header.MainType = mainType;
+            header.SubType = subType;
+            header.Flag = flag;
+            header.Version = 1;
+            header.Id = GenerateId();
+            header.Remain = new byte[12];
+
+            byte[] bytes = Encoding.UTF8.GetBytes(str);
+            header.Length = (uint)bytes.Length;
+
+            return new MyRequest
+            {
+                Header = header,
+                Body = new MyRequestBody(bytes)
+            };
+        }
+
+        private static uint GenerateId()
+        {
+            DateTime time1 = DateTime.Now;
+            DateTime time2 = new DateTime(time1.Year, time1.Month, 1, 0, 0, 0);
+            TimeSpan span = time1 - time2;
+            uint a = Convert.ToUInt32(span.TotalMilliseconds);
+            return a;
         }
     }
 

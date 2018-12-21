@@ -17,6 +17,9 @@ namespace demo.socketserver
             NewRequestReceived += (s, r) =>
             {
                 Console.WriteLine($"received {s.SessionID} \n[{r.Header.SubType}]{r.Body.ContentStr}");
+                MyRequest reply = MyRequest.GenerateMsgs("", r.Header.MainType, r.Header.SubType, 2);
+                byte[] bytes = reply.Bytes;
+                s.Send(bytes, 0, bytes.Length);
             };
             return true;
         }
@@ -30,6 +33,7 @@ namespace demo.socketserver
 
         protected override void OnSessionClosed(MySession session, CloseReason reason)
         {
+            base.OnSessionClosed(session, reason);
             Console.WriteLine($"Session Closed: {session.SessionID}, caused by: {reason.ToString()}");
             Console.WriteLine($"Total Session Count: {SessionCount}");
             Console.WriteLine();

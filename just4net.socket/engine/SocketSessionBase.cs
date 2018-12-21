@@ -203,7 +203,7 @@ namespace just4net.socket.engine
                 return false;
 
             var trackId = queue.TrackID;
-            if (queue.Enqueue(segment, trackId))
+            if (!queue.Enqueue(segment, trackId))
                 return false;
 
             StartSend(queue, trackId, true);
